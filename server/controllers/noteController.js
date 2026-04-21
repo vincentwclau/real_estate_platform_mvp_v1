@@ -34,7 +34,7 @@ exports.createNote = asyncErrorHandler(async (req, res, next) => {
 
 // Get All Notes - GET /notes
 exports.getAllNotes = asyncErrorHandler(async (req, res, next) => {
-    console.log(`📋 Retrieved ${notes.length} notes`);
+    console.log('📋 Retrieved all notes', notes);
 
     res.status(200).json({
         success: true,
@@ -50,6 +50,8 @@ exports.getNoteById = asyncErrorHandler(async (req, res, next) => {
     if (!note) {
         return next(new ErrorHandler(`Note not found with id: ${req.params.id}`, 404));
     }
+
+    console.log('✅ Node Found:', note);
 
     res.status(200).json({
         success: true,
